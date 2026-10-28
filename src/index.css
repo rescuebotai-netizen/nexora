@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: 'Space Mono', ui-monospace, monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  .font-mono-tabular {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Remove all borderlines across the platform as requested */
+  *,
+  *::before,
+  *::after {
+    border-color: transparent !important;
+    border-width: 0 !important;
+  }
+}
+
+/* Moving animation from left to right (marquee-ltr) */
+@keyframes marquee-ltr {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee-ltr {
+  display: flex;
+  width: max-content;
+  animation: marquee-ltr 32s linear infinite;
+}
+
+.animate-marquee-ltr:hover {
+  animation-play-state: paused;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #4B5563;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9CA3AF;
+}
+
+/* Interactive Zoom-In & Bounce Animations for Landing Page */
+@keyframes text-zoom-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes text-gentle-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.animate-text-zoom {
+  animation: text-zoom-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-text-bounce {
+  display: inline-block;
+  animation: text-gentle-bounce 3s ease-in-out infinite;
+}
+
+/* Interactive Text Zoom on Hover */
+.interactive-text {
+  display: inline-block;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.interactive-text:hover {
+  transform: scale(1.035) translateY(-1px);
+}
+
+/* Reveal and fade-out as user scrolls up and down */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(28px) scale(0.96);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Global Contrast & Light Mode Typography Integrity */
+:root {
+  color-scheme: light dark;
+}
+
+/* Light mode legibility enforcement: Ensure all primary text is deep crisp black and subtitles are rich charcoal */
+html:not(.dark),
+body:not(.dark) {
+  color: #0A0A0C !important;
+  background-color: #FFFFFF !important;
+}
+
+html:not(.dark) p,
+html:not(.dark) span:not(.keep-light),
+html:not(.dark) label,
+html:not(.dark) h1,
+html:not(.dark) h2,
+html:not(.dark) h3,
+html:not(.dark) h4,
+html:not(.dark) strong,
+html:not(.dark) b {
+  color: inherit;
+}
+
+html:not(.dark) .text-white\/80,
+html:not(.dark) .text-white\/75,
+html:not(.dark) .text-white\/70,
+html:not(.dark) .text-white\/65,
+html:not(.dark) .text-white\/60,
+html:not(.dark) .text-white\/50 {
+  color: #1F2937 !important;
+}
+
+html.dark body {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}

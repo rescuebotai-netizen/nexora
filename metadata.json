@@ -1,0 +1,6 @@
+{
+  "name": "NEXORA — Event Commerce Platform",
+  "description": "Africa-first, globally scalable event discovery, booking, ticketing, and organizer management platform.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
